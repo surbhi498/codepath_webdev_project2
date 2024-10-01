@@ -1,0 +1,72 @@
+/* General page styling */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #add8e6; 
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #333;
+}
+
+/* Flashcard container */
+.flashcard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Flip animation */
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #333;
+  color: #add8e6;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Flashcard styling */
+.flashcard {
+  background-color: #006400; /* Dark green background for better contrast */
+  color: #000000; /* Black text for better contrast */
+  border: 2px solid #000000; /* Black border for better visibility */
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  margin: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for card effect */
+  position: relative;
+}
+
+.flashcard.flipped {
+  background-color: #000000; /* Black background for flipped state */
+  color: #ffff00;/* White text for flipped state */
+  transform: rotateY(180deg);
+}
+
+/* Ensure text inside the flipped card remains upright */
+.flashcard .flashcard-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flashcard.flipped .flashcard-content {
+  transform: translate(-50%, -50%) rotateY(180deg);
+}
