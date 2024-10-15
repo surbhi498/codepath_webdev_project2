@@ -15,11 +15,20 @@ function FlashcardSet() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   // Function to display a random card
-  const nextCard = () => {
+  const Shuffle = () => {
     const randomIndex = Math.floor(Math.random() * flashcards.length);
     setCurrentIndex(randomIndex); 
      // Set the new random card index
      setIsFlipped(false);
+  };
+  const nextCard = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
+    setIsFlipped(false); // Reset the flipped state
+  };
+
+  const prevCard = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + flashcards.length) % flashcards.length);
+    setIsFlipped(false); // Reset the flipped state
   };
 
   return (
@@ -28,12 +37,21 @@ function FlashcardSet() {
       <h2>Flashcard Study Set</h2>
       <p>Total Cards: {flashcards.length}</p>
       <p>Click on the card to flip between question and answer.</p>
-
+      <Flashcard
+        card={flashcards[currentIndex]}
+        isFlipped={isFlipped}
+        setIsFlipped={setIsFlipped}
+      />
       {/* Display the current flashcard */}
-      <Flashcard card={flashcards[currentIndex]} isFlipped={isFlipped} setIsFlipped={setIsFlipped} />
+      {/* <Flashcard card={flashcards[currentIndex]} isFlipped={isFlipped} setIsFlipped={setIsFlipped} /> */}
 
       {/* Button to go to the next random card */}
-      <button onClick={nextCard}>Next Card</button>
+      <div className="navigation-buttons">
+        <button onClick={prevCard}>Back</button>
+        <button onClick={nextCard}>Next</button>
+        <button onClick={Shuffle}>Shuffle Card</button>
+      </div>
+     
     </div>
   );
 }
